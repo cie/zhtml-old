@@ -9,8 +9,9 @@
 
 <div
   style="transform-origin: 0 0; transform: translate({$view.x}px,{$view.y}px)scale({$view.scale});
-  --z-zoom: {$view.scale}; --z-zoom-0_2: {$view.scale ** 0.2}; --z-zoom-0_7: {$view.scale ** 0.7};
-  --z-delay: -{$view.scale / 100}s ">
+  --z-zoom: {$view.scale}; --z-parent-zoom: {$view.scale}; --z-zoom-0_2: {$view.scale ** 0.2};
+  --z-zoom-0_7: {$view.scale ** 0.7}; --z-delay: calc(-1s * var(--z-zoom) / 100)
+  ">
   <slot />
 </div>
 

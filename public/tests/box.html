@@ -43,9 +43,11 @@
       <div style="animation: hello1 1s paused both; animation-delay: var(--z-delay)">
         Hello
       </div>
-      <z-canvas>
-        Helo 2
-      </z-canvas>
+      <z-box style="transform: scale(0.5); --z-zoom: calc(var(--z-parent-zoom) * 0.5); --z-delay: calc(-1s * var(--z-zoom) / 100)">
+        <div style=" animation: hello1 1s paused both; animation-delay: var(--z-delay)">
+          Helo 2
+        </div>
+      </z-box>
     </article>
     <svg
       style="position: absolute; top: 0; left: 0; transform: translate(0, 60px); width: 105; height: 55; box-shadow: 0 0 0 calc(2px / var(--z-zoom)) #323; --z-x: 50; --z-y: 30;"
