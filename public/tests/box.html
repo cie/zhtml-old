@@ -28,19 +28,24 @@
               opacity: 0
             }
             1% {
+              transform: translate(0px, 0px);
+            }
+            2% {
               opacity: 1;
+              transform: translate(40px, 0px);
             }
-            1.7% {
+            5% {
               opacity: 0.5;
-            }
-            to {
               color: white;
             }
           }
         </style>
-      <div style="animation: hello1 1s paused; animation-delay: var(--z-delay)">
+      <div style="animation: hello1 1s paused both; animation-delay: var(--z-delay)">
         Hello
       </div>
+      <z-canvas>
+        Helo 2
+      </z-canvas>
     </article>
     <svg
       style="position: absolute; top: 0; left: 0; transform: translate(0, 60px); width: 105; height: 55; box-shadow: 0 0 0 calc(2px / var(--z-zoom)) #323; --z-x: 50; --z-y: 30;"
@@ -51,20 +56,20 @@
   </z-canvas>
 </z-viewport>
 
-<script src="http://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
-  const viewport = document
-    .querySelector('z-viewport')
- viewport.addEventListener('wheel', function (evt) {
+  const viewport = document.querySelector('z-viewport')
+  viewport.addEventListener('wheel', function (evt) {
       evt.preventDefault()
       evt.stopImmediatePropagation()
-      let p = evt.currentTarget.view.target
+      const canvas = evt.target.closest('z-canvas') || document.querySelector('z-canvas')
+      let p = canvas.view.target
       const topic = evt.target.closest('[data-z-topic]')
       if (topic) {
+        p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
       } else {
         p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
       }
-      evt.currentTarget.view.animate(p, {
+      canvas.view.animate(p, {
         duration: 200,
         easing: penner.easeOutQuad,
         options: { path: 'euclidean' }
