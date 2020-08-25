@@ -1,0 +1,43 @@
+<script src="../bundle.js"></script>
+<style>
+  html,
+  body,
+  z-viewport {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  * {
+    box-sizing: border-box;
+  }
+</style>
+<z-viewport style="background: radial-gradient(#c0c0c0, #e0e0e0)">
+  <z-canvas>
+    <article
+      style="width: 100; height: 50; box-shadow: 0 0 0 calc(2px / var(--z-zoom-0_7)) #323; --z-x: 50; --z-y: 30;"
+    >
+    <div style="transform-origin: 0 0; transform: scale(calc(1 / var(--z-zoom-0_2)));">
+       Hello
+    </div>
+      <style>
+        @keyframes hello1 {
+          from {
+            color: black;
+          }
+          to {
+            color: gray;
+          }
+        }
+      </style>
+    <div style="animation: hello1 1s calc(-0.5s * var(--z-zoom)) paused both;">
+       Hello
+    </div>
+    </article>
+    <svg
+      style="position: absolute; top: 0; left: 0; transform: translate(0, 60px); width: 105; height: 55; box-shadow: 0 0 0 calc(2px / var(--z-zoom)) #323; --z-x: 50; --z-y: 30;"
+    >
+      <rect x1=0 y1 = 0 x2=100 y2=100 style="stroke-width: calc(2 / var(--z-zoom)); stroke: #323">
+    </svg>
+  </z-canvas>
+</z-viewport>
