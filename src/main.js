@@ -2,6 +2,11 @@ import './z-viewport.svelte'
 import './z-canvas.svelte'
 import './z-box.svelte'
 
+import { Point } from './math/Point'
+import * as penner from 'penner'
+window.Point = Point
+window.penner = penner
+
 function prop (name, syntax, initialValue, inherits = false) {
   CSS.registerProperty({ name, syntax, inherits, initialValue })
 }

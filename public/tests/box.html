@@ -16,28 +16,58 @@
   <z-canvas>
     <article
       style="width: 100; height: 50; box-shadow: 0 0 0 calc(2px / var(--z-zoom-0_7)) #323; --z-x: 50; --z-y: 30;"
+      data-z-topic
     >
-    <div style="transform-origin: 0 0; transform: scale(calc(1 / var(--z-zoom-0_2)));">
-       Hello
-    </div>
-      <style>
-        @keyframes hello1 {
-          from {
-            color: black;
+      <div style="transform-origin: 0 0; transform: scale(calc(1 / var(--z-zoom-0_2)));">
+        Hello
+      </div>
+        <style>
+          @keyframes hello1 {
+            from {
+              color: black;
+              opacity: 0
+            }
+            1% {
+              opacity: 1;
+            }
+            1.7% {
+              opacity: 0.5;
+            }
+            to {
+              color: white;
+            }
           }
-          to {
-            color: gray;
-          }
-        }
-      </style>
-    <div style="animation: hello1 1s calc(-0.5s * var(--z-zoom)) paused both;">
-       Hello
-    </div>
+        </style>
+      <div style="animation: hello1 1s paused; animation-delay: var(--z-delay)">
+        Hello
+      </div>
     </article>
     <svg
       style="position: absolute; top: 0; left: 0; transform: translate(0, 60px); width: 105; height: 55; box-shadow: 0 0 0 calc(2px / var(--z-zoom)) #323; --z-x: 50; --z-y: 30;"
+      data-z-topic
     >
       <rect x1=0 y1 = 0 x2=100 y2=100 style="stroke-width: calc(2 / var(--z-zoom)); stroke: #323">
     </svg>
   </z-canvas>
 </z-viewport>
+
+<script src="http://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+  const viewport = document
+    .querySelector('z-viewport')
+ viewport.addEventListener('wheel', function (evt) {
+      evt.preventDefault()
+      evt.stopImmediatePropagation()
+      let p = evt.currentTarget.view.target
+      const topic = evt.target.closest('[data-z-topic]')
+      if (topic) {
+      } else {
+        p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
+      }
+      evt.currentTarget.view.animate(p, {
+        duration: 200,
+        easing: penner.easeOutQuad,
+        options: { path: 'euclidean' }
+      })
+    })
+</script>
