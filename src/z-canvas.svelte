@@ -1,6 +1,5 @@
 <script>
   import { ORIGIN } from './math/Point'
-  import { onMount, tick } from 'svelte'
   import { AnimatedPoint } from './animation/AnimatedPoint'
   export let view = new AnimatedPoint(ORIGIN)
 </script>

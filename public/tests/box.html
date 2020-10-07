@@ -12,48 +12,70 @@
     box-sizing: border-box;
   }
 </style>
+
 <z-viewport style="background: radial-gradient(#c0c0c0, #e0e0e0)">
   <z-canvas>
     <article
       style="width: 100; height: 50; box-shadow: 0 0 0 calc(2px / var(--z-zoom-0_7)) #323; --z-x: 50; --z-y: 30;"
       data-z-topic
     >
-      <div style="transform-origin: 0 0; transform: scale(calc(1 / var(--z-zoom-0_2)));">
+      <div
+        style="transform-origin: 0 0; transform: scale(calc(1 / var(--z-zoom-0_2)));"
+      >
         Hello
       </div>
-        <style>
-          @keyframes hello1 {
-            from {
-              color: black;
-              opacity: 0
-            }
-            1% {
-              transform: translate(0px, 0px);
-            }
-            2% {
-              opacity: 1;
-              transform: translate(40px, 0px);
-            }
-            5% {
-              opacity: 0.5;
-              color: white;
-            }
+      <style>
+        @keyframes hello1 {
+          from {
+            color: black;
+            opacity: 0;
           }
-        </style>
-      <div style="animation: hello1 1s paused both; animation-delay: var(--z-delay)">
+          1% {
+            transform: translate(0px, 0px);
+          }
+          2% {
+            opacity: 1;
+            transform: translate(40px, 0px);
+          }
+          2.8% {
+            opacity: 0;
+            transform: translate(40px, 0px);
+          }
+          2.81% {
+          }
+          to {
+            opacity: 0;
+            transform: translate(40px, 0px);
+          }
+        }
+      </style>
+      <div
+        style="animation: hello1 1s paused both; animation-delay: var(--z-delay)"
+      >
         Hello
       </div>
-      <z-box style="transform: scale(0.5); --z-zoom: calc(var(--z-parent-zoom) * 0.5); --z-delay: calc(-1s * var(--z-zoom) / 100)">
-        <div style=" animation: hello1 1s paused both; animation-delay: var(--z-delay)">
+      <z-box
+        style="transform: scale(0.5); --z-zoom: calc(var(--z-parent-zoom) * 0.5); --z-delay: calc(-1s * var(--z-zoom) / 100)"
+      >
+        <div
+          style=" animation: hello1 1s paused both; animation-delay: var(--z-delay)"
+        >
           Helo 2
         </div>
       </z-box>
     </article>
+
     <svg
       style="position: absolute; top: 0; left: 0; transform: translate(0, 60px); width: 105; height: 55; box-shadow: 0 0 0 calc(2px / var(--z-zoom)) #323; --z-x: 50; --z-y: 30;"
       data-z-topic
     >
-      <rect x1=0 y1 = 0 x2=100 y2=100 style="stroke-width: calc(2 / var(--z-zoom)); stroke: #323">
+      <rect
+        x1="0"
+        y1="0"
+        x2="100"
+        y2="100"
+        style="stroke-width: 2; stroke: #323"
+      ></rect>
     </svg>
   </z-canvas>
 </z-viewport>
@@ -61,20 +83,21 @@
 <script>
   const viewport = document.querySelector('z-viewport')
   viewport.addEventListener('wheel', function (evt) {
-      evt.preventDefault()
-      evt.stopImmediatePropagation()
-      const canvas = evt.target.closest('z-canvas') || document.querySelector('z-canvas')
-      let p = canvas.view.target
-      const topic = evt.target.closest('[data-z-topic]')
-      if (topic) {
-        p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
-      } else {
-        p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
-      }
-      canvas.view.animate(p, {
-        duration: 200,
-        easing: penner.easeOutQuad,
-        options: { path: 'euclidean' }
-      })
+    evt.preventDefault()
+    evt.stopImmediatePropagation()
+    const canvas =
+      evt.target.closest('z-canvas') || document.querySelector('z-canvas')
+    let p = canvas.view.target
+    const topic = evt.target.closest('[data-z-topic]')
+    if (topic) {
+      p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
+    } else {
+      p = p.plus(new Point(0, 0, 1.41 ** (-evt.deltaY / 100)))
+    }
+    canvas.view.animate(p, {
+      duration: 200,
+      easing: penner.easeOutQuad,
+      options: { path: 'euclidean' }
     })
+  })
 </script>
