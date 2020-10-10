@@ -4,6 +4,8 @@
   let containers = {}
 
   function norm(tr) {
+    // change back matrix to scale, because for matrix, Chrome does a
+    // more agressive downsampling after a certain scale level
     return tr.replace(
       /matrix\(([^,]+), 0, 0, \1, ([^,]+), ([^,]+)\)/,
       'translate($2px, $3px)scale($1)'
@@ -31,13 +33,6 @@
       const downwards = newP.k < oldP.k
       //if (downwards) console.log('d')
       // host.__z_setZoomShallow(oldP)
-      /*console.log(
-        'afta',
-        name,
-        container.offsetWidth,
-        container.style.transform,
-        old[i]
-      )*/
       container.animate(
         [
           {
@@ -81,26 +76,22 @@
       p.k * 0.125
     })`
   }
+
+  const slots = ['->1.2x', '1.2x->']
 </script>
 
 <svelte:options tag="z-fig" />
 
-<div
-  bind:this={containers['->1.2x']}
-  style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0;">
+{#each slots as name}
   <div
-    style="width: 12.5%; transform-origin: 0 0; position: absolute; top: 0; left: 0; transform: scale(8);">
-    <slot name="->1.2x" />
+    bind:this={containers[name]}
+    style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0;">
+    <div
+      style="width: 12.5%; transform-origin: 0 0; position: absolute; top: 0; left: 0; transform: scale(8);">
+      {@html `<slot name="${name}" />`}
+    </div>
   </div>
-</div>
-<div
-  bind:this={containers['1.2x->']}
-  style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0;">
-  <div
-    style="width: 12.5%; transform-origin: 0 0; position: absolute; top: 0; left: 0; transform: scale(8);">
-    <slot name="1.2x->" />
-  </div>
-</div>
+{/each}
 
 <style>
   :host {
