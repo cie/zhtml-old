@@ -1,6 +1,5 @@
 import './z-viewport.svelte'
-import './z-canvas.svelte'
-import './z-box.svelte'
+import './z-fig.svelte'
 
 import { Point } from './math/Point'
 import * as penner from 'penner'

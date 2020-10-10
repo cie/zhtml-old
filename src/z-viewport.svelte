@@ -22,8 +22,6 @@
 <style>
   :host {
     display: block;
-    width: 400px;
-    height: 300px;
     overflow: hidden;
     contain: content;
   }
