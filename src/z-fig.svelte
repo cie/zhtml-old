@@ -56,13 +56,7 @@
   }
   host.__z_setZoomShallow = function (p) {
     containers['->1.2x'].style.opacity = p.k < 1.2 ? 1 : 0
-    containers['->1.2x'].style.transform = `translate(${p.x}px,${p.y}px)scale(${
-      p.k * 0.125
-    })`
     containers['1.2x->'].style.opacity = p.k > 1.2 ? 1 : 0
-    containers['1.2x->'].style.transform = `translate(${p.x}px,${p.y}px)scale(${
-      p.k * 0.125
-    })`
   }
 
   const slots = ['->1.2x', '1.2x->', undefined]
@@ -73,7 +67,7 @@
 {#each slots as name}
   <div
     bind:this={containers[name]}
-    style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0; transform: scale(0.125)">
+    style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0; transform: translateZ(0)scale(0.125)">
     <div
       style="width: 12.5%; transform-origin: 0 0; position: absolute; top: 0; left: 0; transform: scale(8);">
       {@html name ? `<slot name="${name}" />` : `<slot/>`}
