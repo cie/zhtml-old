@@ -29,15 +29,17 @@
     id="vp"
     style="flex: 1; background: radial-gradient(#c0c0c0, #e0e0e0)"
   >
-    <z-fig style="--z-width: 200px; text-shadow: 3px 3px 5px black;">
-      <div slot="->1.2x" style="font-size: 1.8em;">
-         Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </div>  
-      <div slot="1.2x->">
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-        dolorem quia dicta, hic nulla similique suscipit, placeat inventore
-        minima odio fuga.
-      </div>
-    </z-fig>
+    <z-canvas>
+      <z-fig style="--z-width: 200px; text-shadow: 3px 3px 5px black;">
+        <z-fig slot="->1.2x" style="font-size: 1.8em;">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </z-fig>  
+        <z-fig slot="1.2x->">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          dolorem quia dicta, hic nulla similique suscipit, placeat inventore
+          minima odio fuga.
+        </z-fig>
+      </z-fig>
+    </z-canvas>
   </z-viewport>
 </body>

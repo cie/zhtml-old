@@ -1,4 +1,5 @@
 import './z-viewport.svelte'
+import './z-canvas.svelte'
 import './z-fig.svelte'
 
 import { Point } from './math/Point'

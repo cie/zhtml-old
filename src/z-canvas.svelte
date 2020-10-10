@@ -68,7 +68,7 @@
   const slots = ['->1.2x', '1.2x->', undefined]
 </script>
 
-<svelte:options tag="z-fig" />
+<svelte:options tag="z-canvas" />
 
 {#each slots as name}
   <div
