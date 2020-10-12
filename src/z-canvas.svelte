@@ -1,5 +1,6 @@
 <script>
   import { get_current_component, onMount, tick } from 'svelte/internal'
+  import { normalizeTransform } from './zoom'
   const host = get_current_component()
   let viewport, view
   onMount(() => {
@@ -12,15 +13,22 @@
   let container
   let p = { x: 0, y: 0, k: 1 }
   $: if (container && view) {
-    const oldP = p
-    p = $view.p
-    container.animate(
-      [
-        { transform: t(oldP), easing: 'cubic-bezier(.37,.67,.58,1)' },
-        { transform: t(p) }
-      ],
-      $view.options
-    )
+    if (p !== $view.p) {
+      const { transform: oldTransform } = getComputedStyle(container)
+      p = $view.p
+      tick().then(() => {
+        container.animate(
+          [
+            {
+              transform: normalizeTransform(oldTransform),
+              easing: 'cubic-bezier(.37,.67,.58,1)'
+            },
+            { transform: t(p) }
+          ],
+          $view.options
+        )
+      })
+    }
   }
 
   function t(p) {

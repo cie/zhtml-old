@@ -1,6 +1,6 @@
 import rangeExpr from './rangeExpr'
 
-function norm (tr) {
+export function normalizeTransform (tr) {
   // change back matrix to scale, because for matrix, Chrome does a
   // more agressive downsampling after a certain scale level
   return tr.replace(
@@ -17,7 +17,7 @@ export default function zoom (newP, options = { duration: 300 }) {
   const old = Object.entries(this.containers).map(([name, container]) => {
     const { transform, opacity } = getComputedStyle(container)
     return {
-      transform: norm(transform),
+      transform: normalizeTransform(transform),
       opacity
     }
   })
@@ -30,7 +30,7 @@ export default function zoom (newP, options = { duration: 300 }) {
           easing: 'cubic-bezier(.37,.67,.58,1)'
         },
         {
-          transform: norm(transform),
+          transform: normalizeTransform(transform),
           opacity
         }
       ],

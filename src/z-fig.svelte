@@ -65,9 +65,12 @@
 
 {#each slots as name}
   <div
-    bind:this={containers[name]}
-    style="width: var(--z-width); position: absolute; top:0; left: 0;">
-    {@html name ? `<slot name="${name}" />` : `<slot/>`}
+    style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0; transform: translateZ(0)scale(0.125)"
+    bind:this={containers[name]}>
+    <div
+      style="width: 12.5%; transform-origin: 0 0; position: absolute; top: 0; left: 0; transform: scale(8);">
+      {@html name ? `<slot name="${name}" />` : `<slot/>`}
+    </div>
   </div>
 {/each}
 
