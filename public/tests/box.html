@@ -14,13 +14,19 @@
 
 <body style="display: flex; flex-direction: column;">
   <nav>
-    <button onclick="vp.__z_view.set({p: {x:0, y:0, k: 9}, options: {duration: 1000}})">
+    <button
+      onclick="vp.__z_view.set( { p: {x:0, y:0, k: 9}, options: {path: 'poincare', easing: 'cubic-bezier(.28,0,.27,.99)'}})"
+    >
       A
     </button>
-    <button onclick="vp.__z_view.set({p: {x:40, y:40, k: 2}, options: {duration: 1000}})">
+    <button
+      onclick="vp.__z_view.set({p: {x:40, y:40, k: 2}, options: { path: 'poincare', easing: 'cubic-bezier(.28,0,.27,.99)'}})"
+    >
       B
     </button>
-    <button onclick="vp.__z_view.set({p: {x:0, y:0, k: 0.9}, options: {duration: 1000}})">
+    <button
+      onclick="vp.__z_view.set({p: {x:0, y:0, k: 0.9}, options: { path: 'poincare', easing: 'cubic-bezier(.28,0,.27,.99)'}})"
+    >
       C
     </button>
   </nav>
@@ -30,13 +36,21 @@
     style="flex: 1; background: radial-gradient(#c0c0c0, #e0e0e0)"
   >
     <z-canvas>
-      <z-fig style="--z-width: 200px; text-shadow: 3px 3px 5px black;">
-        <z-fig slot="->0.5x" style="height: 8em; margin-right: 2em; background-color: rgba(0, 0, 0, 0.25);">
-        </z-fig>  
-        <z-fig slot="0.5x<->1.2x" style="font-size: 1.8em;">
+      <z-fig style="width: 200px; text-shadow: 3px 3px 5px black;">
+        <z-fig
+          slot="->0.5x"
+          style="height: 8em; width: 100%; margin-right: 2em; background-color: rgba(0, 0, 0, 0.25);"
+        >
+        </z-fig>
+        <z-fig slot="0.5x<->1.2x" style="font-size: 1.8em; width: 100%;">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </z-fig>  
-        <z-fig slot="1.2x-">
+        </z-fig>
+        <z-fig slot="1.2x-" style="width: 100%;">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          dolorem quia dicta, hic nulla similique suscipit, placeat inventore
+          minima odio fuga.
+        </z-fig>
+        <z-fig style="--z-x: 340; width: 400px" focusable id="jonki">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
           dolorem quia dicta, hic nulla similique suscipit, placeat inventore
           minima odio fuga.

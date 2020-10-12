@@ -1,6 +1,6 @@
 <script>
   import { get_current_component, tick } from 'svelte/internal'
-  import { normalizeTransform } from './zoom'
+  import { add, dif, ldist, lerp, neg, pdist, perp, sub } from './math/points'
   const host = get_current_component()
   let viewport, view
   setTimeout(() => {
@@ -12,36 +12,55 @@
   let p = { x: 0, y: 0, k: 1 }
   $: if (container && view) {
     if (p !== $view.p) {
-      const { transform: oldTransform } = getComputedStyle(container)
+      const oldP = p
       p = $view.p
+      const { path = 'linear', ...options } = $view.options
+      if (!options.easing) options.easing = 'cubic-bezier(.37,.67,.58,1)'
+      if (!options.duration) options.duration = pdist(oldP, p) * 60
       tick().then(() => {
-        container.animate(
-          [
-            {
-              transform: normalizeTransform(oldTransform),
-              easing: 'cubic-bezier(.37,.67,.58,1)'
-            },
-            { transform: t(p) }
-          ],
-          $view.options
-        )
+        if (path === 'linear') {
+          container.animate(
+            [{ transform: t(oldP) }, { transform: t(p) }],
+            options
+          )
+        } else {
+          let center = {
+            x: viewport.offsetWidth / 2,
+            y: viewport.offsetHeight / 2,
+            k: 1
+          }
+          const i1 = perp(add(neg(oldP), center), add(neg(p), center))
+          console.log(options.duration / i1.S)
+          options.duration *= 3.6
+          //options.duration = i1.S * 1000
+          const int = t => neg(add(i1(t), neg(center)))
+          const n = 10
+          container.animate(
+            [...Array(n + 1)].map((_, i) => ({ transform: t(int(i / n)) })),
+            options
+          )
+        }
       })
     }
   }
 
   function t(p) {
-    return `translateZ(0)translate(${p.x}px,${p.y}px)scale(${p.k})`
+    return `translate(${p.x}px,${p.y}px)scale(${p.k})`
   }
 </script>
 
 <svelte:options tag="z-canvas" />
 
-<div bind:this={container} style="transform-origin: 0 0; transform: {t(p)}">
+<div bind:this={container} style="transform: {t(p)}">
   <slot />
 </div>
 
 <style>
   :host {
     display: block;
+    transform-origin: 0 0;
+  }
+  div {
+    transform-origin: 0 0;
   }
 </style>
