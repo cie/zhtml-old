@@ -14,13 +14,13 @@
 
 <body style="display: flex; flex-direction: column;">
   <nav>
-    <button onclick="vp.__z_animateZoom({x:0, y:0, k: 9}, {duration: 1000})">
+    <button onclick="vp.__z_view.set({p: {x:0, y:0, k: 9}, options: {duration: 1000}})">
       A
     </button>
-    <button onclick="vp.__z_animateZoom({x:40, y:40, k: 2}, {duration: 600})">
+    <button onclick="vp.__z_view.set({p: {x:40, y:40, k: 2}, options: {duration: 1000}})">
       B
     </button>
-    <button onclick="vp.__z_animateZoom({x:0, y:0, k: 0.9}, {duration: 700})">
+    <button onclick="vp.__z_view.set({p: {x:0, y:0, k: 0.9}, options: {duration: 1000}})">
       C
     </button>
   </nav>
