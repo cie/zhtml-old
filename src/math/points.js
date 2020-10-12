@@ -1,6 +1,6 @@
 const { log, hypot, pow, asinh, acosh, sinh, cosh, exp, sqrt, tanh } = Math
 const sq = x => x * x
-const W = 1200
+const W = 40000
 
 export function add (a, b) {
   return {
@@ -44,7 +44,7 @@ export function proj (a, k) {
 
 export function perp (a, b) {
   // code from d3.js interpolateZoom
-  const scale = W,
+  const scale = 1000,
     rho = 1.41
   const rho2 = sq(rho),
     rho4 = sq(rho2)

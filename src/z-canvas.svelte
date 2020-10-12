@@ -15,15 +15,17 @@
       const oldP = p
       p = $view.p
       const { path = 'linear', ...options } = $view.options
-      if (!options.easing) options.easing = 'cubic-bezier(.37,.67,.58,1)'
-      if (!options.duration) options.duration = pdist(oldP, p) * 60
       tick().then(() => {
         if (path === 'linear') {
+          if (!options.easing) options.easing = 'cubic-bezier(.37,.67,.58,1)'
+          if (!options.duration) options.duration = pdist(oldP, p) * 60
           container.animate(
             [{ transform: t(oldP) }, { transform: t(p) }],
             options
           )
         } else {
+          if (!options.easing) options.easing = 'cubic-bezier(.28,0,.55,.99)'
+          if (!options.duration) options.duration = pdist(oldP, p) * 144
           let center = {
             x: viewport.offsetWidth / 2,
             y: viewport.offsetHeight / 2,
@@ -31,7 +33,6 @@
           }
           const i1 = perp(add(neg(oldP), center), add(neg(p), center))
           console.log(options.duration / i1.S)
-          options.duration *= 3.6
           //options.duration = i1.S * 1000
           const int = t => neg(add(i1(t), neg(center)))
           const n = 10

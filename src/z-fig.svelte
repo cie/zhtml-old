@@ -38,7 +38,7 @@
   }
 
   function focus() {
-    if (focused) return
+    if (focusable === undefined || focused) return
     $view = focusView
     if (host.id) history.pushState(undefined, '', '#' + host.id)
   }
