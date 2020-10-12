@@ -1,13 +1,11 @@
 <script>
-  import { get_current_component, onMount, tick } from 'svelte/internal'
+  import { get_current_component, tick } from 'svelte/internal'
   import { normalizeTransform } from './zoom'
   const host = get_current_component()
   let viewport, view
-  onMount(() => {
-    setTimeout(() => {
-      viewport = host.closest('z-viewport')
-      view = viewport.__z_view
-    })
+  setTimeout(() => {
+    viewport = host.closest('z-viewport')
+    view = viewport.__z_view
   })
 
   let container
