@@ -1,5 +1,8 @@
 <script>
   import { get_current_component, onMount, tick } from 'svelte/internal'
+  import { fade } from 'svelte/transition'
+  import fix from './transfix.js'
+  const t = fix(fade)
   const host = get_current_component()
   let viewport, view
   onMount(() => {
@@ -23,49 +26,18 @@
       allSlots.forEach(name => {
         if (!has.hasOwnProperty(name)) has[name] = rangeExpr(name)
       })
-      slots = [
-        ...allSlots.filter(name => has[name](oldZ) || has[name](z)),
-        undefined
-      ]
-      tick().then(() => {
-        console.log(slots)
-        slots.forEach(name => {
-          if (!name) return
-          const before = has[name](oldZ)
-          const after = has[name](z)
-          console.log(has, name, { before, after })
-          if (before && !after) {
-            containers[name].animate(
-              [
-                { opacity: 1, easing: 'cubic-bezier(.08,1.12,.54,.98)' },
-                { opacity: 0 }
-              ],
-              $view.options
-            )
-            containers[name].style.opacity = 0
-          } else if (after && !before) {
-            containers[name].animate(
-              [
-                { opacity: 0, easing: 'cubic-bezier(.22,.56,.57,1)' },
-                { opacity: 1 }
-              ],
-              $view.options
-            )
-            containers[name].style.opacity = 1
-          } else if (after && before) {
-            containers[name].style.opacity = 1
-          }
-        })
-      })
+      slots = [...allSlots.filter(name => has[name](z)), undefined]
     }
   }
 </script>
 
 <svelte:options tag="z-fig" />
 
-{#each slots as name}
+{#each slots as name (name)}
   <div
+    class="container"
     style="transform-origin: 0 0; width: calc(var(--z-width) * 8); position: absolute; top: 0; left: 0; transform: translateZ(0)scale(0.125)"
+    transition:t={{ duration: 400, delay: 100 }}
     bind:this={containers[name]}>
     <div
       style="width: 12.5%; transform-origin: 0 0; position: absolute; top: 0; left: 0; transform: scale(8);">
