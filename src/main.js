@@ -1,4 +1,4 @@
-import './z-viewport.svelte'
+import './z-window.svelte'
 import './z-canvas.svelte'
 import './z-fig.svelte'
 

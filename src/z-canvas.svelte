@@ -2,10 +2,10 @@
   import { get_current_component, tick } from 'svelte/internal'
   import { add, dif, ldist, lerp, neg, pdist, perp, sub } from './math/points'
   const host = get_current_component()
-  let viewport, view
+  let zWindow, view
   setTimeout(() => {
-    viewport = host.closest('z-viewport')
-    view = viewport.__z_view
+    zWindow = host.closest('z-window')
+    view = zWindow.__z_view
   })
 
   let container
@@ -27,8 +27,8 @@
           if (!options.easing) options.easing = 'cubic-bezier(.28,0,.55,.99)'
           if (!options.duration) options.duration = pdist(oldP, p) * 144
           let center = {
-            x: viewport.offsetWidth / 2,
-            y: viewport.offsetHeight / 2,
+            x: zWindow.offsetWidth / 2,
+            y: zWindow.offsetHeight / 2,
             k: 1
           }
           const i1 = perp(add(neg(oldP), center), add(neg(p), center))

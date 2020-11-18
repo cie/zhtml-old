@@ -1,6 +1,7 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "zhtml",
+  "version": "0.0.0",
+  "main": "public/bundle.js",
   "devDependencies": {
     "@stryker-mutator/core": "^4.0.0",
     "cross-env": "^5.2.0",

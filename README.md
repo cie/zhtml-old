@@ -18,9 +18,9 @@ Felmerült, hogy Canvas alapú vagy DOM alapú legyen a renderelő, és alapvet�
 
 These components are provided
 
-* `z-viewport`
+* `z-window`
 * `z-canvas`
-* `z-box` a general-purpose figure backed by an HTML DOM Element. Good for creating:
+* `z-fig` a general-purpose figure backed by an HTML DOM Element. Good for creating:
     * rectangles
     * rounded rectangles
     * text boxes
@@ -31,7 +31,7 @@ These components are provided
 
 ## Animációs szabályok
 
-- csak JS animációs api-t használunk. Animáció közben nem futtatunk JS-t és nem állítunk CSS-t.
+- Animáció közben nem futtatunk JS-t és nem állítunk CSS-t.
 - nem animálunk custom CSS propertyket, hanem kiszámoltatjuk a valódi CSS propertyket a végső esetre, és aztán átanimáljuk.
 
 ## API
@@ -52,13 +52,18 @@ Every figure MUST set its host element to have
 
 #### CSS variables
 
+
 ### `z-canvas` API
 
-Several z-canvas elements can be added to the same viewport, and they will always move together.
+Several z-canvas elements can be added to the same window, and they will always move together.
 
-### `z-viewport` API
+### `z-window` API
 
 `view` an AnimatedPoint object
+
+### Transitions
+
+`--z-anim-<sth>` properties
 
 
 [FLIP]: https://aerotwist.com/blog/flip-your-animations/

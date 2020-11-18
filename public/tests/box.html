@@ -31,7 +31,7 @@
     </button>
   </nav>
 
-  <z-viewport
+  <z-window
     id="vp"
     style="flex: 1; background: radial-gradient(#c0c0c0, #e0e0e0)"
   >
@@ -51,11 +51,18 @@
           minima odio fuga.
         </z-fig>
         <z-fig style="--z-x: 340; width: 400px" focusable id="jonki">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-          dolorem quia dicta, hic nulla similique suscipit, placeat inventore
-          minima odio fuga.
+          <div slot="-1.2x" style="font-size: 1.8em; width: 100%;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+            dolorem quia dicta, ...
+          </div>
+          <div slot="1.2x<-" style="width: 100%;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+            dolorem quia dicta, hic nulla similique suscipit, placeat inventore
+            minima odio fuga.
+          </div>
         </z-fig>
       </z-fig>
     </z-canvas>
-  </z-viewport>
+  </z-window>
+  
 </body>

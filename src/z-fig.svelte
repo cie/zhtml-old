@@ -1,10 +1,10 @@
 <script>
   import { get_current_component } from 'svelte/internal'
   const host = get_current_component()
-  let viewport, view
+  let zWindow, view
   setTimeout(() => {
-    viewport = host.closest('z-viewport')
-    view = viewport.__z_view
+    zWindow = host.closest('z-window')
+    view = zWindow.__z_view
   })
 
   export let focusable
@@ -12,6 +12,7 @@
   import rangeExpr from './rangeExpr'
   import { fade } from 'svelte/transition'
   import fix from './transfix.js'
+  import { eq } from './math/points'
   const t = fix(fade)
 
   let slots = []
@@ -33,9 +34,6 @@
     options: {}
   }
   $: focused = $view && eq($view.p, focusView.p)
-  function eq(a, b) {
-    return a.x === b.x && a.y === b.y && a.k === b.k
-  }
 
   function focus() {
     if (focusable === undefined || focused) return

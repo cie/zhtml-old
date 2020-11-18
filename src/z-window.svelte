@@ -18,7 +18,7 @@
   })
 </script>
 
-<svelte:options tag="z-viewport" />
+<svelte:options tag="z-window" />
 
 <slot />
 
