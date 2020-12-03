@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "main": "public/bundle.js",
   "devDependencies": {
-    "@stryker-mutator/core": "^4.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "mini-css-extract-plugin": "^0.6.0",
