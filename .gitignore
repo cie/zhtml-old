@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-public/bundle.*
+/public/zhtml.js
+/public/zhtml.min.js
 /pnpm-lock.yaml
 /yarn.lock
 # stryker temp files

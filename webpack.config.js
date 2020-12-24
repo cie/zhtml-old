@@ -6,7 +6,7 @@ const prod = mode === 'production'
 
 module.exports = {
   entry: {
-    bundle: ['./src/main.js']
+    zhtml: ['./src/main.js']
   },
   resolve: {
     alias: {
@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/public',
-    filename: '[name].js',
+    filename: '[name].min.js',
     chunkFilename: '[name].[id].js'
   },
   module: {
